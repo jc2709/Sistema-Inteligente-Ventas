@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build-apk:
-    name: Compilar APK de arbol5-modelo-ofertas
+    name: Compilar APK release de arbol5-modelo-ofertas
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -51,13 +51,13 @@ jobs:
             echo "::warning::Faltan SUPABASE_URL o SUPABASE_PUBLISHABLE_KEY; la APK compilara, pero no podra cargar el catalogo real."
           fi
 
-      - name: Compilar APK de prueba
-        run: flutter build apk --debug --dart-define-from-file=env.json
+      - name: Compilar APK release de prueba
+        run: flutter build apk --release --dart-define-from-file=env.json
 
-      - name: Guardar APK
+      - name: Guardar APK release
         uses: actions/upload-artifact@v7
         with:
-          name: apk-prueba-arbol5
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          name: apk-prueba-arbol5-release
+          path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 7
           if-no-files-found: error
