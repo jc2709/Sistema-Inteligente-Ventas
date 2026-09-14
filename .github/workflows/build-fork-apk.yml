@@ -2,6 +2,9 @@ name: Generar APK de prueba del fork
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
